@@ -4,8 +4,9 @@ import os
 google_creds = os.getenv("GOOGLE_CREDENTIALS")
 
 if google_creds:
+    decoded_creds = google_creds.replace("\\n", "\n")  # decode escaped newlines
     with open("credentials.json", "w") as f:
-        f.write(google_creds)
+        f.write(decoded_creds)
 else:
     raise Exception("GOOGLE_CREDENTIALS environment variable not found")
 
